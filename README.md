@@ -410,7 +410,7 @@ graph TB
     Store --> Help[help]
     Store --> Profile[profile]
 
-    Customers --> C_Items[items: Customer[]]
+    Customers --> C_Items["items: Customer[]"]
     Customers --> C_Status[status: loading/succeeded/failed]
     Customers --> C_Pagination[pagination: page, total, etc.]
     Customers --> C_Filters[filters: search, sortBy]
