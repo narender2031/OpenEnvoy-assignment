@@ -5,6 +5,7 @@ import { productReducer } from '../features/product'
 import { incomeReducer } from '../features/income'
 import { promoteReducer } from '../features/promote'
 import { helpReducer } from '../features/help'
+import { profileReducer } from '../features/profile'
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     income: incomeReducer,
     promote: promoteReducer,
     help: helpReducer,
+    profile: profileReducer,
   },
 })
 

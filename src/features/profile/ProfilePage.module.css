@@ -1,0 +1,139 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.loadingState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+  min-height: 300px;
+}
+
+/* Profile Header */
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.profileCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 4px solid var(--color-accent-light);
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.role {
+  font-size: var(--font-size-md);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
+.department {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.bio {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.bio p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* Stats Strip */
+.statsStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+/* Details Card */
+.detailsCard {
+  padding: var(--spacing-xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.contactIcon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.contactLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contactValue {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}

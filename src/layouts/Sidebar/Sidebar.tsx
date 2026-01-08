@@ -164,7 +164,16 @@ export function Sidebar({
         {navigation.map(renderNavGroup)}
       </nav>
 
-      <div className={styles.userProfile}>
+      <a
+        href="/profile"
+        className={`${styles.userProfile} ${currentPath === '/profile' ? styles.userProfileActive : ''}`}
+        onClick={(e) => {
+          e.preventDefault()
+          if (onNavigate) {
+            onNavigate('/profile')
+          }
+        }}
+      >
         <img
           src={user.avatar}
           alt={`${user.name}'s avatar`}
@@ -174,7 +183,7 @@ export function Sidebar({
           <span className={styles.userName}>{user.name}</span>
           <span className={styles.userRole}>{user.role}</span>
         </div>
-      </div>
+      </a>
     </aside>
   )
 }

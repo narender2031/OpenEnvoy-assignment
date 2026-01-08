@@ -9,6 +9,7 @@ import { productReducer } from '@/features/product'
 import { incomeReducer } from '@/features/income'
 import { promoteReducer } from '@/features/promote'
 import { helpReducer } from '@/features/help'
+import { profileReducer } from '@/features/profile'
 import type { RootState } from '@/store/store'
 
 // Create a test store with optional preloaded state
@@ -21,6 +22,7 @@ export function createTestStore(preloadedState?: Partial<RootState>) {
       income: incomeReducer,
       promote: promoteReducer,
       help: helpReducer,
+      profile: profileReducer,
     },
     preloadedState: preloadedState as RootState,
   })

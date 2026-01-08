@@ -91,51 +91,26 @@ export const navigationConfig: NavGroup[] = [
         icon: 'ShoppingBag',
         label: 'Product',
         path: '/product',
-        children: [
-          { label: 'All Products', path: '/product' },
-          { label: 'Add Product', path: '/product/new' },
-          { label: 'Categories', path: '/product/categories' },
-        ],
       },
       {
         icon: 'Users',
         label: 'Customers',
         path: '/customers',
-        children: [
-          { label: 'All Customers', path: '/customers' },
-          { label: 'Add Customer', path: '/customers/new' },
-          { label: 'Segments', path: '/customers/segments' },
-        ],
       },
       {
         icon: 'Wallet',
         label: 'Income',
         path: '/income',
-        children: [
-          { label: 'Overview', path: '/income' },
-          { label: 'Transactions', path: '/income/transactions' },
-          { label: 'Reports', path: '/income/reports' },
-        ],
       },
       {
         icon: 'Tag',
         label: 'Promote',
         path: '/promote',
-        children: [
-          { label: 'Campaigns', path: '/promote' },
-          { label: 'Discounts', path: '/promote/discounts' },
-          { label: 'Coupons', path: '/promote/coupons' },
-        ],
       },
       {
         icon: 'HelpCircle',
         label: 'Help',
         path: '/help',
-        children: [
-          { label: 'Documentation', path: '/help' },
-          { label: 'FAQs', path: '/help/faqs' },
-          { label: 'Contact Support', path: '/help/support' },
-        ],
       },
     ],
   },

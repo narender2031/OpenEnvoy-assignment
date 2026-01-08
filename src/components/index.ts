@@ -1,9 +1,10 @@
 // Primitives
-export { Button, Badge, SearchInput, Select, Card } from './primitives'
+export { Button, Badge, SearchInput, Select, Dropdown, Card } from './primitives'
 export type { ButtonProps } from './primitives'
 export type { BadgeProps } from './primitives'
 export type { SearchInputProps } from './primitives'
 export type { SelectProps, SelectOption } from './primitives'
+export type { DropdownProps, DropdownOption } from './primitives'
 export type { CardProps } from './primitives'
 
 // Data Display

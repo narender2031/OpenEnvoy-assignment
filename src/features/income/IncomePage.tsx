@@ -20,7 +20,7 @@ import {
   setSortBy,
   setCurrentPage,
 } from './incomeSlice'
-import { StatCard, TrendIndicator, Table, Pagination, SearchInput, Select, Badge, Spinner, EmptyState, ErrorState } from '@/components'
+import { StatCard, TrendIndicator, Table, Pagination, SearchInput, Dropdown, Badge, Spinner, EmptyState, ErrorState } from '@/components'
 import type { Column } from '@/components'
 import type { Transaction, TransactionSortBy } from '@/types/income'
 import styles from './IncomePage.module.css'
@@ -113,8 +113,8 @@ export function IncomePage() {
   )
 
   const handleSortChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      dispatch(setSortBy(e.target.value as TransactionSortBy))
+    (value: string) => {
+      dispatch(setSortBy(value as TransactionSortBy))
     },
     [dispatch]
   )
@@ -192,7 +192,7 @@ export function IncomePage() {
               onChange={handleSearchChange}
               aria-label="Search transactions"
             />
-            <Select
+            <Dropdown
               label="Sort by:"
               options={sortOptions}
               value={sortBy}

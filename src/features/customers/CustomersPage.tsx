@@ -27,7 +27,7 @@ import {
   Table,
   Pagination,
   SearchInput,
-  Select,
+  Dropdown,
   Badge,
   Spinner,
   EmptyState,
@@ -118,8 +118,8 @@ export function CustomersPage() {
   )
 
   const handleSortChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      dispatch(setSortBy(e.target.value as SortBy))
+    (value: string) => {
+      dispatch(setSortBy(value as SortBy))
     },
     [dispatch]
   )
@@ -200,7 +200,7 @@ export function CustomersPage() {
               onChange={handleSearchChange}
               aria-label="Search customers"
             />
-            <Select
+            <Dropdown
               label="Sort by:"
               options={sortOptions}
               value={sortBy}

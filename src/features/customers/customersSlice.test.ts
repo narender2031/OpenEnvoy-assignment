@@ -23,6 +23,7 @@ import { productReducer } from '@/features/product'
 import { incomeReducer } from '@/features/income'
 import { promoteReducer } from '@/features/promote'
 import { helpReducer } from '@/features/help'
+import { profileReducer } from '@/features/profile'
 import { customerService } from '@/services/customerService'
 import type { Customer, Stats, PaginatedResponse } from '@/types/customer'
 
@@ -83,6 +84,7 @@ function createStore() {
       income: incomeReducer,
       promote: promoteReducer,
       help: helpReducer,
+      profile: profileReducer,
     },
   })
 }

@@ -16,7 +16,7 @@ import {
   setSortBy,
   setCurrentPage,
 } from './productSlice'
-import { Table, Pagination, SearchInput, Select, Badge, Spinner, EmptyState, ErrorState } from '@/components'
+import { Table, Pagination, SearchInput, Dropdown, Badge, Spinner, EmptyState, ErrorState } from '@/components'
 import type { Column } from '@/components'
 import type { Product, ProductSortBy } from '@/types/product'
 import styles from './ProductPage.module.css'
@@ -88,8 +88,8 @@ export function ProductPage() {
   )
 
   const handleSortChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      dispatch(setSortBy(e.target.value as ProductSortBy))
+    (value: string) => {
+      dispatch(setSortBy(value as ProductSortBy))
     },
     [dispatch]
   )
@@ -123,7 +123,7 @@ export function ProductPage() {
               onChange={handleSearchChange}
               aria-label="Search products"
             />
-            <Select
+            <Dropdown
               label="Sort by:"
               options={sortOptions}
               value={sortBy}

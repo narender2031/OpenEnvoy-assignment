@@ -144,8 +144,13 @@ describe('CustomersPage Integration', () => {
       expect(screen.getByText('John Doe')).toBeInTheDocument()
     })
 
-    const sortSelect = screen.getByRole('combobox', { name: /sort/i })
-    await user.selectOptions(sortSelect, 'name')
+    // Open the dropdown
+    const sortDropdown = screen.getByRole('button', { name: /sort/i })
+    await user.click(sortDropdown)
+
+    // Select "Name" option
+    const nameOption = screen.getByRole('option', { name: /name/i })
+    await user.click(nameOption)
 
     await waitFor(() => {
       expect(customerService.getCustomers).toHaveBeenCalledWith(

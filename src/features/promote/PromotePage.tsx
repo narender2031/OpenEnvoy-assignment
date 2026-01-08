@@ -16,7 +16,7 @@ import {
   setSortBy,
   setCurrentPage,
 } from './promoteSlice'
-import { Table, Pagination, SearchInput, Select, Badge, Spinner, EmptyState, ErrorState } from '@/components'
+import { Table, Pagination, SearchInput, Dropdown, Badge, Spinner, EmptyState, ErrorState } from '@/components'
 import type { Column } from '@/components'
 import type { Campaign, CampaignSortBy } from '@/types/promote'
 import styles from './PromotePage.module.css'
@@ -126,8 +126,8 @@ export function PromotePage() {
   )
 
   const handleSortChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      dispatch(setSortBy(e.target.value as CampaignSortBy))
+    (value: string) => {
+      dispatch(setSortBy(value as CampaignSortBy))
     },
     [dispatch]
   )
@@ -161,7 +161,7 @@ export function PromotePage() {
               onChange={handleSearchChange}
               aria-label="Search campaigns"
             />
-            <Select
+            <Dropdown
               label="Sort by:"
               options={sortOptions}
               value={sortBy}

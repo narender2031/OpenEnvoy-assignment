@@ -5,6 +5,7 @@ import { CustomersPage } from '@/features/customers'
 import { IncomePage } from '@/features/income'
 import { PromotePage } from '@/features/promote'
 import { HelpPage } from '@/features/help'
+import { ProfilePage } from '@/features/profile'
 
 export interface RouteConfig {
   path: string
@@ -19,4 +20,5 @@ export const routes: RouteConfig[] = [
   { path: '/income', element: <IncomePage /> },
   { path: '/promote', element: <PromotePage /> },
   { path: '/help', element: <HelpPage /> },
+  { path: '/profile', element: <ProfilePage /> },
 ]

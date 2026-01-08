@@ -161,6 +161,17 @@
   padding: var(--spacing-lg);
   border-top: 1px solid var(--color-border);
   margin-top: auto;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  text-decoration: none;
+}
+
+.userProfile:hover {
+  background: var(--color-background);
+}
+
+.userProfileActive {
+  background: var(--color-sidebar-active-bg);
 }
 
 .userAvatar {
