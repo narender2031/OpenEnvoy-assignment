@@ -1,0 +1,50 @@
+.card {
+  background: var(--color-surface);
+}
+
+/* Padding variants */
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: var(--spacing-sm);
+}
+
+.padding-md {
+  padding: var(--spacing-md);
+}
+
+.padding-lg {
+  padding: var(--spacing-lg);
+}
+
+/* Elevation variants */
+.elevation-none {
+  box-shadow: none;
+}
+
+.elevation-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.elevation-md {
+  box-shadow: var(--shadow-md);
+}
+
+.elevation-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Radius variants */
+.radius-sm {
+  border-radius: var(--radius-sm);
+}
+
+.radius-md {
+  border-radius: var(--radius-md);
+}
+
+.radius-lg {
+  border-radius: var(--radius-lg);
+}

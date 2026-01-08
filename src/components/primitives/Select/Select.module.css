@@ -1,0 +1,49 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.select {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-xs) var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  cursor: pointer;
+  outline: none;
+  min-width: 80px;
+}
+
+.select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text);
+  pointer-events: none;
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

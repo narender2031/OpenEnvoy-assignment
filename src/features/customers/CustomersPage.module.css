@@ -10,29 +10,9 @@
   gap: var(--spacing-lg);
 }
 
-.statCard {
-  background: var(--color-surface);
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-  box-shadow: var(--shadow-sm);
-}
-
-.statCard span {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-.statCard strong {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-}
-
 .tableCard {
   background: var(--color-surface);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-sm);
 }
@@ -40,21 +20,100 @@
 .tableHeader {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  justify-content: space-between;
   margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
-.tableHeader h2 {
+.tableTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.tableTitle h2 {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
+  margin: 0;
 }
 
 .activeLink {
   color: var(--color-primary);
   font-size: var(--font-size-sm);
   cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.activeLink:hover {
+  text-decoration: underline;
+}
+
+.tableControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
 }
 
 .tableContent {
+  min-height: 400px;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
   min-height: 300px;
+  color: var(--color-text-secondary);
+}
+
+.loadingState p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.tableFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.showingText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .statsStrip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .statsStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .tableHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tableControls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tableFooter {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+  }
 }

@@ -7,6 +7,7 @@ import {
   HelpCircle,
   ChevronRight,
 } from 'lucide-react'
+import { useUser } from '@/contexts'
 import styles from './Sidebar.module.css'
 
 interface NavItem {
@@ -26,8 +27,10 @@ const navItems: NavItem[] = [
 ]
 
 export function Sidebar() {
+  const user = useUser()
+
   return (
-    <aside className={styles.sidebar}>
+    <aside className={styles.sidebar} aria-label="Main navigation">
       <div className={styles.logo}>
         <div className={styles.logoIcon}>
           <LayoutDashboard size={24} />
@@ -42,11 +45,12 @@ export function Sidebar() {
             key={item.label}
             href="#"
             className={`${styles.navItem} ${item.active ? styles.active : ''}`}
+            aria-current={item.active ? 'page' : undefined}
           >
-            <span className={styles.navIcon}>{item.icon}</span>
+            <span className={styles.navIcon} aria-hidden="true">{item.icon}</span>
             <span className={styles.navLabel}>{item.label}</span>
             {item.hasSubmenu && (
-              <ChevronRight size={16} className={styles.chevron} />
+              <ChevronRight size={16} className={styles.chevron} aria-hidden="true" />
             )}
           </a>
         ))}
@@ -54,13 +58,13 @@ export function Sidebar() {
 
       <div className={styles.userProfile}>
         <img
-          src="https://i.pravatar.cc/40?img=8"
-          alt="Evano"
+          src={user.avatar}
+          alt={`${user.name}'s avatar`}
           className={styles.userAvatar}
         />
         <div className={styles.userInfo}>
-          <span className={styles.userName}>Evano</span>
-          <span className={styles.userRole}>Project Manager</span>
+          <span className={styles.userName}>{user.name}</span>
+          <span className={styles.userRole}>{user.role}</span>
         </div>
       </div>
     </aside>

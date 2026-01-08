@@ -1,13 +1,19 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import type { Customer, Stats, SortBy } from '../../types/customer'
-import { customerService } from '../../services/customerService'
-import type { RootState } from '../../store/store'
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import type { Customer, Stats, SortBy, CustomersQueryParams, PaginatedResponse } from '@/types/customer'
+import { customerService } from '@/services/customerService'
+import type { RootState } from '@/store/store'
+
+type LoadingStatus = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 interface CustomersState {
   customers: Customer[]
+  total: number
+  totalPages: number
   stats: Stats | null
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
-  error: string | null
+  customersStatus: LoadingStatus
+  statsStatus: LoadingStatus
+  customersError: string | null
+  statsError: string | null
   search: string
   sortBy: SortBy
   currentPage: number
@@ -16,9 +22,13 @@ interface CustomersState {
 
 const initialState: CustomersState = {
   customers: [],
+  total: 0,
+  totalPages: 0,
   stats: null,
-  status: 'idle',
-  error: null,
+  customersStatus: 'idle',
+  statsStatus: 'idle',
+  customersError: null,
+  statsError: null,
   search: '',
   sortBy: 'newest',
   currentPage: 1,
@@ -27,9 +37,9 @@ const initialState: CustomersState = {
 
 export const fetchCustomers = createAsyncThunk(
   'customers/fetchCustomers',
-  async () => {
-    const customers = await customerService.getCustomers()
-    return customers
+  async (params: CustomersQueryParams) => {
+    const response = await customerService.getCustomers(params)
+    return response
   }
 )
 
@@ -58,20 +68,34 @@ const customersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Customers
       .addCase(fetchCustomers.pending, (state) => {
-        state.status = 'loading'
-        state.error = null
+        state.customersStatus = 'loading'
+        state.customersError = null
       })
-      .addCase(fetchCustomers.fulfilled, (state, action) => {
-        state.status = 'succeeded'
-        state.customers = action.payload
+      .addCase(fetchCustomers.fulfilled, (state, action: PayloadAction<PaginatedResponse<Customer>>) => {
+        state.customersStatus = 'succeeded'
+        state.customers = action.payload.data
+        state.total = action.payload.total
+        state.totalPages = action.payload.totalPages
+        state.currentPage = action.payload.page
       })
       .addCase(fetchCustomers.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message || 'Failed to fetch customers'
+        state.customersStatus = 'failed'
+        state.customersError = action.error.message || 'Failed to fetch customers'
+      })
+      // Stats
+      .addCase(fetchStats.pending, (state) => {
+        state.statsStatus = 'loading'
+        state.statsError = null
       })
       .addCase(fetchStats.fulfilled, (state, action) => {
+        state.statsStatus = 'succeeded'
         state.stats = action.payload
+      })
+      .addCase(fetchStats.rejected, (state, action) => {
+        state.statsStatus = 'failed'
+        state.statsError = action.error.message || 'Failed to fetch stats'
       })
   },
 })
@@ -79,60 +103,28 @@ const customersSlice = createSlice({
 export const { setSearch, setSortBy, setCurrentPage } = customersSlice.actions
 
 // Selectors
-export const selectCustomersStatus = (state: RootState) => state.customers.status
-export const selectCustomersError = (state: RootState) => state.customers.error
+export const selectCustomers = (state: RootState) => state.customers.customers
+export const selectCustomersStatus = (state: RootState) => state.customers.customersStatus
+export const selectStatsStatus = (state: RootState) => state.customers.statsStatus
+export const selectCustomersError = (state: RootState) => state.customers.customersError
+export const selectStatsError = (state: RootState) => state.customers.statsError
 export const selectStats = (state: RootState) => state.customers.stats
 export const selectSearch = (state: RootState) => state.customers.search
 export const selectSortBy = (state: RootState) => state.customers.sortBy
 export const selectCurrentPage = (state: RootState) => state.customers.currentPage
 export const selectPageSize = (state: RootState) => state.customers.pageSize
+export const selectTotalPages = (state: RootState) => state.customers.totalPages
+export const selectTotalEntries = (state: RootState) => state.customers.total
 
-export const selectFilteredCustomers = (state: RootState) => {
-  const { customers, search } = state.customers
-  if (!search.trim()) return customers
-
-  const searchLower = search.toLowerCase()
-  return customers.filter(
-    (customer) =>
-      customer.name.toLowerCase().includes(searchLower) ||
-      customer.company.toLowerCase().includes(searchLower) ||
-      customer.email.toLowerCase().includes(searchLower)
-  )
-}
-
-export const selectSortedCustomers = (state: RootState) => {
-  const filtered = selectFilteredCustomers(state)
-  const { sortBy } = state.customers
-
-  return [...filtered].sort((a, b) => {
-    switch (sortBy) {
-      case 'newest':
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      case 'name':
-        return a.name.localeCompare(b.name)
-      case 'status':
-        return a.status === b.status ? 0 : a.status === 'active' ? -1 : 1
-      default:
-        return 0
-    }
+// Build query params from current state (memoized)
+export const selectQueryParams = createSelector(
+  [selectCurrentPage, selectPageSize, selectSearch, selectSortBy],
+  (page, pageSize, search, sortBy): CustomersQueryParams => ({
+    page,
+    pageSize,
+    search: search || undefined,
+    sortBy,
   })
-}
-
-export const selectPaginatedCustomers = (state: RootState) => {
-  const sorted = selectSortedCustomers(state)
-  const { currentPage, pageSize } = state.customers
-  const startIndex = (currentPage - 1) * pageSize
-  return sorted.slice(startIndex, startIndex + pageSize)
-}
-
-export const selectTotalPages = (state: RootState) => {
-  const filtered = selectFilteredCustomers(state)
-  const { pageSize } = state.customers
-  return Math.ceil(filtered.length / pageSize)
-}
-
-export const selectTotalEntries = (state: RootState) => {
-  return selectFilteredCustomers(state).length
-}
+)
 
 export default customersSlice.reducer

@@ -1,5 +1,5 @@
-import { CustomersPage } from './features/customers/CustomersPage'
-import { DashboardLayout } from './layouts/DashboardLayout'
+import { CustomersPage } from '@/features/customers/CustomersPage'
+import { DashboardLayout } from '@/layouts'
 
 function App() {
   return (

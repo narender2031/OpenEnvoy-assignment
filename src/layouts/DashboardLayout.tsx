@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import { Sidebar } from '../components/Sidebar/Sidebar'
-import { TopBar } from '../components/TopBar/TopBar'
+import { Sidebar } from './Sidebar/Sidebar'
+import { TopBar } from './TopBar/TopBar'
 import styles from './DashboardLayout.module.css'
 
 interface DashboardLayoutProps {
