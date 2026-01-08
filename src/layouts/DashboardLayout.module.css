@@ -8,10 +8,10 @@
   margin-left: var(--sidebar-width);
   display: flex;
   flex-direction: column;
+  padding: 0 var(--spacing-2xl) var(--spacing-2xl);
 }
 
 .content {
   flex: 1;
-  padding: var(--spacing-lg) var(--spacing-xl);
   overflow-y: auto;
 }

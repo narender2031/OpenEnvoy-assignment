@@ -70,13 +70,17 @@ All design values are CSS custom properties defined in `src/styles/tokens.css`:
 
 ```css
 :root {
-  /* Colors - Primary */
+  /* Colors - Primary (green for badges, trends) */
   --color-primary: #00AC4F;
-  --color-primary-light: #E6F9EE;
+  --color-primary-light: #16C09861;
+
+  /* Colors - Accent (pagination, sidebar active) */
+  --color-accent: #5932EA;
+  --color-accent-light: #5932EA1A;
 
   /* Colors - Danger */
   --color-danger: #DF0404;
-  --color-danger-light: #FDE8E8;
+  --color-danger-light: #FFC5C5;
 
   /* Colors - Text */
   --color-text: #292D32;
@@ -99,15 +103,17 @@ All design values are CSS custom properties defined in `src/styles/tokens.css`:
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 30px;
 
-  /* Typography */
-  --font-family: 'Inter', -apple-system, sans-serif;
+  /* Typography - Poppins as per Figma design */
+  --font-family: 'Poppins', -apple-system, sans-serif;
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-md: 16px;
   --font-size-lg: 18px;
   --font-size-xl: 22px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
 }
 ```
 
