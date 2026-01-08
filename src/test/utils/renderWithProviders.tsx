@@ -4,6 +4,11 @@ import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { store as appStore } from '@/store/store'
 import customersReducer from '@/features/customers/customersSlice'
+import { dashboardReducer } from '@/features/dashboard'
+import { productReducer } from '@/features/product'
+import { incomeReducer } from '@/features/income'
+import { promoteReducer } from '@/features/promote'
+import { helpReducer } from '@/features/help'
 import type { RootState } from '@/store/store'
 
 // Create a test store with optional preloaded state
@@ -11,6 +16,11 @@ export function createTestStore(preloadedState?: Partial<RootState>) {
   return configureStore({
     reducer: {
       customers: customersReducer,
+      dashboard: dashboardReducer,
+      product: productReducer,
+      income: incomeReducer,
+      promote: promoteReducer,
+      help: helpReducer,
     },
     preloadedState: preloadedState as RootState,
   })

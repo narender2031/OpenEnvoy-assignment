@@ -18,6 +18,11 @@ import customersReducer, {
   selectQueryParams,
   selectStats,
 } from './customersSlice'
+import { dashboardReducer } from '@/features/dashboard'
+import { productReducer } from '@/features/product'
+import { incomeReducer } from '@/features/income'
+import { promoteReducer } from '@/features/promote'
+import { helpReducer } from '@/features/help'
 import { customerService } from '@/services/customerService'
 import type { Customer, Stats, PaginatedResponse } from '@/types/customer'
 
@@ -73,6 +78,11 @@ function createStore() {
   return configureStore({
     reducer: {
       customers: customersReducer,
+      dashboard: dashboardReducer,
+      product: productReducer,
+      income: incomeReducer,
+      promote: promoteReducer,
+      help: helpReducer,
     },
   })
 }
