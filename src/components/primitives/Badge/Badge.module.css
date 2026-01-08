@@ -12,7 +12,7 @@
 .success {
   background: var(--color-primary-light);
   color: var(--color-primary);
-  border: 1px solid #00AC4F;
+  border: 1px solid var(--color-primary);
 }
 
 .danger {

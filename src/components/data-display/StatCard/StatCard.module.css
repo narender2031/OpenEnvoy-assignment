@@ -23,13 +23,13 @@
 }
 
 .iconWrapper.purple {
-  background: #F4ECFF;
-  color: #9B51E0;
+  background: var(--color-icon-purple-bg);
+  color: var(--color-icon-purple);
 }
 
 .iconWrapper.blue {
-  background: #E3F5FF;
-  color: #2D9CDB;
+  background: var(--color-icon-blue-bg);
+  color: var(--color-icon-blue);
 }
 
 .content {

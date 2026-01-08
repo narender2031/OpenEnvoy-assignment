@@ -1,6 +1,7 @@
 :root {
   /* Colors - Primary (green for badges, trends) */
   --color-primary: #00AC4F;
+  --color-primary-hover: #009944;
   --color-primary-light: #16C09861;
 
   /* Colors - Accent (pagination, active states) */
@@ -25,6 +26,12 @@
   --color-sidebar-bg: #FFFFFF;
   --color-sidebar-active: #5932EA;
   --color-sidebar-active-bg: #5932EA1A;
+
+  /* Colors - Icon backgrounds */
+  --color-icon-purple-bg: #F4ECFF;
+  --color-icon-purple: #9B51E0;
+  --color-icon-blue-bg: #E3F5FF;
+  --color-icon-blue: #2D9CDB;
 
   /* Spacing */
   --spacing-xs: 4px;

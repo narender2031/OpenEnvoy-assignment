@@ -83,9 +83,10 @@ export function CustomersPage() {
     dispatch(fetchStats())
   }, [dispatch])
 
-  // Fetch customers when query params change
+  // Fetch customers when page or sort changes (immediate, not debounced)
   useEffect(() => {
     dispatch(fetchCustomers(queryParams))
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only fetch on page/sort changes, search is debounced separately
   }, [dispatch, queryParams.page, queryParams.sortBy])
 
   // Debounced search effect
@@ -105,6 +106,7 @@ export function CustomersPage() {
         clearTimeout(searchTimeoutRef.current)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only trigger debounce on search change, other params handled above
   }, [dispatch, queryParams.search])
 
   // Handlers
