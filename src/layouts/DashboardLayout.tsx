@@ -14,13 +14,18 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className={styles.layout}>
+      {/* Skip link for keyboard users */}
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to main content
+      </a>
+
       <Sidebar
         currentPath={location.pathname}
         onNavigate={(path) => navigate(path)}
       />
       <div className={styles.main}>
         <TopBar />
-        <main className={styles.content}>
+        <main id="main-content" className={styles.content} tabIndex={-1}>
           {children}
         </main>
       </div>

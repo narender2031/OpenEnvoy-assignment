@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react'
+import { useEffect, useCallback, useRef, useMemo } from 'react'
 import { Users, UserCheck, Monitor } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import {
@@ -32,6 +32,7 @@ import {
   Spinner,
   EmptyState,
   ErrorState,
+  LiveRegion,
 } from '@/components'
 import type { Column } from '@/components'
 import type { Customer, SortBy } from '@/types/customer'
@@ -147,8 +148,28 @@ export function CustomersPage() {
     return num.toString()
   }
 
+  // Live region announcement for screen readers
+  const liveAnnouncement = useMemo(() => {
+    if (customersStatus === 'loading') {
+      return 'Loading customers...'
+    }
+    if (customersStatus === 'failed') {
+      return `Error: ${customersError || 'Failed to load customers'}`
+    }
+    if (customersStatus === 'succeeded') {
+      if (customers.length === 0) {
+        return search ? 'No customers found for your search' : 'No customers found'
+      }
+      return `Showing ${customers.length} of ${totalEntries} customers`
+    }
+    return ''
+  }, [customersStatus, customersError, customers.length, totalEntries, search])
+
   return (
     <div className={styles.page}>
+      {/* Live region for screen reader announcements */}
+      <LiveRegion message={liveAnnouncement} />
+
       {/* Stats Strip */}
       <section className={styles.statsStrip} aria-label="Statistics">
         <StatCard

@@ -19,7 +19,8 @@ export { Pagination } from './navigation'
 export type { PaginationProps } from './navigation'
 
 // Feedback
-export { EmptyState, ErrorState, Spinner } from './feedback'
+export { EmptyState, ErrorState, Spinner, LiveRegion } from './feedback'
 export type { EmptyStateProps } from './feedback'
 export type { ErrorStateProps } from './feedback'
 export type { SpinnerProps } from './feedback'
+export type { LiveRegionProps } from './feedback'

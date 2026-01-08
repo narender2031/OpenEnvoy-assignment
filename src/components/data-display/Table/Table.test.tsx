@@ -112,7 +112,7 @@ describe('Table', () => {
     expect(screen.getByTestId('custom-render').tagName).toBe('STRONG')
   })
 
-  it('has accessible grid role', () => {
+  it('has accessible table role', () => {
     render(
       <Table
         columns={columns}
@@ -121,6 +121,7 @@ describe('Table', () => {
       />
     )
 
-    expect(screen.getByRole('grid')).toBeInTheDocument()
+    // Table should use native table role (not grid) for non-interactive tables
+    expect(screen.getByRole('table')).toBeInTheDocument()
   })
 })

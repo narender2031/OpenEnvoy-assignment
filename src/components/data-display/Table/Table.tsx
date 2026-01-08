@@ -31,7 +31,7 @@ export function Table<T>({
 }: TableProps<T>) {
   return (
     <div className={`${styles.wrapper} ${className ?? ''}`}>
-      <table className={styles.table} role="grid">
+      <table className={styles.table}>
         <thead>
           <tr>
             {columns.map((column) => (
